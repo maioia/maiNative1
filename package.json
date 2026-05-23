@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@nandorojo/react-native-safe-area-context": "^3.2.1",
     "expo": "^55.0.25",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",

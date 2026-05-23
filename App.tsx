@@ -1,57 +1,33 @@
 import { useState } from "react";
-import {
-  Alert,
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-  ActivityIndicator,
-  Modal,
-} from "react-native";
-import { scale, verticalScale } from "react-native-size-matters";
+import { Text, TextInput } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function App() {
-  const onButtonPress = () => {
-    Alert.alert("Pressed");
-  };
-
-  const [modalVisible, setModalVisible] = useState(false);
-
+const ViewBoxesWithColorAndText = () => {
+  const [text, setText] = useState("");
+  console.log("user type", text);
   return (
-    <View style={styles.container}>
-      <Button title="show modal" onPress={() => setModalVisible(true)} />
-      <Modal visible={modalVisible} animationType="fade">
-        <Text style={styles.titleText}>show Modal</Text>
-        <Button title="hide modal" onPress={() => setModalVisible(false)} />
-      </Modal>
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{ margin: "40" }}>
+        <TextInput
+          style={{
+            height: 40,
+            width: "80%",
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: "gray",
+          }}
+          placeholder="Enter your name"
+          keyboardType="url"
+          secureTextEntry={true}
+          multiline={true}
+          editable={true}
+          value={text}
+          onChangeText={setText}
+        />
+        <Text>اسمي هو {text}</Text>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    width: 200,
-    height: 100,
-    flex: 1,
-    flexDirection: "column-reverse",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-  },
-
-  titleText: { textAlign: "center", fontSize: 100, color: "#000" },
-
-  view2: {
-    flex: 1,
-    width: scale(200),
-    height: verticalScale(100),
-    flexDirection: "row-reverse",
-    backgroundColor: "blue",
-    marginVertical: 20,
-  },
-});
+export default ViewBoxesWithColorAndText;
